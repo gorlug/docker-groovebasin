@@ -1,5 +1,5 @@
 FROM ubuntu:14.10
-MAINTAINER Achim Rohn <achim.rohn@nuveon.de>
+MAINTAINER Achim Rohn <achim@rohn.eu>
 
 ENV DEBIAN_FRONTEND noninteractive
 
