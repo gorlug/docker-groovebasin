@@ -9,11 +9,11 @@ RUN useradd -m groovebasin && \
     mkdir /home/groovebasin/groove && \
     chown -R groovebasin:groovebasin /home/groovebasin
 USER groovebasin
-RUN git clone --branch 1.5.1 https://github.com/andrewrk/groovebasin.git /home/groovebasin/groovebasin
+RUN git clone --branch album-cover https://github.com/gorlug/groovebasin.git /home/groovebasin/groovebasin
 RUN npm run /home/groovebasin/groovebasin/ build
 RUN npm start /home/groovebasin/groovebasin/; exit 0
+RUN sed -i 's/    "host": "127.0.0.1",/    "host": "0.0.0.0",/g' /home/groovebasin/groovebasin/config.json /home/groovebasin/groovebasin/config.json
 RUN ln -s /home/groovebasin/groove /home/groovebasin/groovebasin/groovebasin.db
-RUN sed -i 's/    "sslKey": "certs\/self-signed-key.pem",/    "sslKey": "",/g' /home/groovebasin/groovebasin/config.json; sed -i 's/    "sslCert": "certs\/self-signed-cert.pem",/    "sslCert": "",/g' /home/groovebasin/groovebasin/config.json
 ENV HOME /home/groovebasin
 WORKDIR /home/groovebasin
 
