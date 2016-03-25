@@ -10,12 +10,13 @@ RUN useradd -m groovebasin && \
     chown -R groovebasin:groovebasin /home/groovebasin
 USER groovebasin
 RUN git clone --branch album-cover https://github.com/gorlug/groovebasin.git /home/groovebasin/groovebasin
-RUN npm run /home/groovebasin/groovebasin/ build
-RUN npm start /home/groovebasin/groovebasin/; exit 0
-RUN sed -i 's/    "host": "127.0.0.1",/    "host": "0.0.0.0",/g' /home/groovebasin/groovebasin/config.json
-RUN sed -i 's/    "albumArt": false/    "albumArt": true/g'  /home/groovebasin/groovebasin/config.json
-RUN sed -i 's|    "musicDirectory": "/home/groovebasin",|    "musicDirectory": "/home/groovebasin/music",|g' /home/groovebasin/groovebasin/config.json
-RUN ln -s /home/groovebasin/groove /home/groovebasin/groovebasin/groovebasin.db
+WORKDIR /home/groovebasin/groovebasin/
+RUN npm run build
+RUN npm start ; exit 0
+RUN sed -i 's/    "host": "127.0.0.1",/    "host": "0.0.0.0",/g' config.json
+RUN sed -i 's/    "albumArt": false/    "albumArt": true/g'  config.json
+RUN sed -i 's|    "musicDirectory": "/home/groovebasin",|    "musicDirectory": "/home/groovebasin/music",|g' config.json
+RUN ln -s /home/groovebasin/groove groovebasin.db
 ENV HOME /home/groovebasin
 WORKDIR /home/groovebasin
 
