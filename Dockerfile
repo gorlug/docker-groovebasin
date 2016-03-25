@@ -18,9 +18,9 @@ RUN sed -i 's/    "albumArt": false/    "albumArt": true/g'  config.json
 RUN sed -i 's|    "musicDirectory": "/home/groovebasin",|    "musicDirectory": "/home/groovebasin/music",|g' config.json
 RUN ln -s /home/groovebasin/groove groovebasin.db
 ENV HOME /home/groovebasin
-WORKDIR /home/groovebasin
+WORKDIR /home/groovebasin/groovebasin
 
 EXPOSE 16242
 EXPOSE 6600
 
-ENTRYPOINT ["npm", "start", "/home/groovebasin/groovebasin"]
+ENTRYPOINT ["npm", "start"]
