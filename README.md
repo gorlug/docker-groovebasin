@@ -14,3 +14,5 @@ Run with
 ```
 sh groovebasin.sh path_to_music path_to_groovebasin_data
 ```
+
+The server is available on port 16242. If it runs on your local machine: http://localhost:16242
